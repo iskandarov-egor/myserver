@@ -2,7 +2,7 @@ import time
 import file_utils, os
 import socket
 import config, http
-from async_file import AsyncFile, AsyncFileTest
+from async_file import AsyncFile
 
 class Connection:
 
@@ -62,7 +62,7 @@ class Connection:
                 if self.response_type == self.RESPONSE_200_OK:
                     if self.first_line.request_type == http.FirstLineOfHttpRequest.REQUEST_GET:
                         self.file = AsyncFile(file)
-                        self.file.request_first_chunk()
+                        self.file.request_chunk()
                     elif self.first_line.request_type != http.FirstLineOfHttpRequest.REQUEST_HEAD:
                         raise Exception()
                     self.response = http.get_header_for_file(self.first_line.http_version, file) + http.header_terminator
@@ -81,8 +81,8 @@ class Connection:
 
         if self.file is not None:
             if self.file.state != AsyncFile.STATE_DONE:
-                if self.file.state == AsyncFile.STATE_CHUNK_READ:
-                    self.file.request_next_chunk()
+                if self.file.state == AsyncFile.STATE_NOT_REQUESTED:
+                    self.file.request_chunk()
                 else:
                     chunk = self.file.try_read_chunk()
                     if chunk:

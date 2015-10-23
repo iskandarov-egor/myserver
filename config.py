@@ -1,4 +1,7 @@
+import utils
+
+
 
 port = 80
-cores = 1
-DOCUMENT_ROOT = '/home/name/Documents/projects/myserver2'
+cores = 2
+DOCUMENT_ROOT = utils.cur_dir

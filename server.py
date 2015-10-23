@@ -17,7 +17,7 @@ class Server():
             self.workers.append(worker)
 
     def bind_and_listen(self):
-        port = 80
+        port = config.port
         try:
             self.sock.bind(('127.0.0.1', port))
         except:

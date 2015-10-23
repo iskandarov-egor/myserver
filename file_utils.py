@@ -64,5 +64,4 @@ class File:
         return path
 
 
-def get_cur_dir():
-    return os.path.dirname(os.path.abspath(__file__))
+

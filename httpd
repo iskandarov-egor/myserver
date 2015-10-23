@@ -8,7 +8,6 @@ import os
 import config
 from multiprocessing import cpu_count
 
-
 try:
     opts, args = getopt.getopt(sys.argv[1:], "r:c:")
 except getopt.GetoptError:
