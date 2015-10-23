@@ -3,7 +3,6 @@ import file_utils, os
 import socket
 import config, http
 from async_file import AsyncFile
-
 class Connection:
 
     RESPONSE_200_OK = 1
